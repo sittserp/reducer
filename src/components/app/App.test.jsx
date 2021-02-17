@@ -13,6 +13,7 @@ describe('App component COLOR PICKER', () => {
         value: '#0000FF'
       }
     });
+    
     expect(recordInput.value).toEqual('#0000ff');
   });
 
@@ -26,7 +27,22 @@ describe('App component COLOR PICKER', () => {
         value: '#ff0000'
       }
     });
+
     expect(undoInput.value).toEqual('#ff0000');
+  });
+
+  it('goes forward to the next color in order', () => {
+    const { asFragment } = render(<App />);
+
+    const redoInput = screen.getByTestId('COLOR_PICKER');
+
+    fireEvent.change(redoInput, {
+      target: {
+        value: '#00ff00'
+      }
+    });
+
+    expect(redoInput.value).toEqual('#00ff00');
   });
 
 });
